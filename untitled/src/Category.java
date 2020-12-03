@@ -147,7 +147,6 @@ public class Category {
      */
     public int QuestionsSize(ArrayList<String> quest){ return quest.size(); }
 
-//    public int AnswersSize(ArrayList<String> answer){ return answer.size(); }
 
 
     /**

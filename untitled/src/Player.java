@@ -38,7 +38,7 @@ public class Player {
 
     /**
      * Update the current score of the player considering the new points he got
-     * @param points
+     * @param points represents the points the player got from the last question he answered
      * @return an integer who represent the current score updated
      */
     public int ChangeTotalPoints(int points){
