@@ -26,19 +26,16 @@ public class Game {
         String name= play1.getAnswer();
         System.out.println();
 
-         Round round=new Round();
-         Category categ=new Category();
-         ArrayList<String> AllQuestions= categ.getQuestions();
-         ArrayList<String> AllAnswers=categ.getAnswers();
-
-
+        Round round=new Round();
+        Category categ=new Category();
+        ArrayList<String> AllQuestions= categ.getQuestions();
+        ArrayList<String> AllAnswers=categ.getAnswers();
 
         boolean EndOfGame=false;
         int CurrentRound=round.getRound();
         int TP=play1.getTotalPoints();
         while (!EndOfGame) {
             int round1=round.TypeOfRound();
-
 
             for (int numOfQuest = 0; numOfQuest <6; numOfQuest++) {
 
