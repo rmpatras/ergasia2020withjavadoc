@@ -102,7 +102,7 @@ public class Category {
         }
 
         for (int i = 0; i < food.getFoodASize(); i++) {
-           Answers.add(food.getFoodA(i));
+            Answers.add(food.getFoodA(i));
         }
 
         for (int i=0;i< sports.getSportASize();i++){
@@ -147,7 +147,6 @@ public class Category {
      */
     public int QuestionsSize(ArrayList<String> quest){ return quest.size(); }
 
-//    public int AnswersSize(ArrayList<String> answer){ return answer.size(); }
 
 
     /**
@@ -155,7 +154,7 @@ public class Category {
      And informs the whole list  so it can keep track of the correct type of category the next question belongs to ,
      in the next round  in-game
      * @param k represents the position in the list of questions of the last question that
-     has been dsplayed on our screen
+    has been dsplayed on our screen
      */
     public void changeMax(int k){
         if(k<maxH) {
@@ -188,29 +187,29 @@ public class Category {
      or they player has answered in all of them.And updates how many questions have left in each type of category
      * @param k represents the position  of the next question
      */
-    public void TypeOfCategory(int k){
-
+    public String TypeOfCategory(int k){
+        String s=" ";
 
         if (k <this.maxH && hQremov <15) {
-            System.out.printf("\tΚΑΤΗΓΟΡΙΑ: ΙΣΤΟΡΙΑ%n");
+            s="ΙΣΤΟΡΙΑ";
             hQremov+=1;
         } else if (k <maxT && tQremov <15) {
-            System.out.printf("\tΚΑΤΗΓΟΡΙΑ: ΤΕΧΝΟΛΟΓΙΑ%n");
+            s="ΤΕΧΝΟΛΟΓΙΑ";
             tQremov+=1;
         } else if (k <maxF && fQremov <15){
-            System.out.println("ΚΑΤΗΓΟΡΙΑ: ΦΑΓΗΤΟ-ΠΟΤΟ");
+            s="ΦΑΓΗΤΟ-ΠΟΤΟ";
             fQremov+=1;
         } else if (k <maxS && sQremov <15){
-            System.out.println("ΚΑΤΗΓΟΡΙΑ:  ΑΘΛΗΤΙΚΑ");
+            s="ΑΘΛΗΤΙΚΑ";
             sQremov+=1;
         } else if (k <maxL && lQremov <15){
-            System.out.println("ΚΑΤΗΓΟΡΙΑ: ΓΛΩΣΣΑ");
+            s="ΓΛΩΣΣΑ";
             maxL--;
             lQremov+=1;
         }
         else
         {
-            System.out.println("No more available questions");
+            s="NO MORE QUESTIONS";
         }
 
         System.out.println();
@@ -218,17 +217,15 @@ public class Category {
         changeMax(k);
 
         System.out.println();
+
+        return s;
+
     }
 
 
-    /**
-     * Displays the answers according the question has been shown, in a random way and after it reads the answer
-     from player,checks if it was  correct or not,and informs the rest of the game to adapt the player's score.
-     * @param k represents the position of the question that has been displayed
-     * @return a boolean that represents if the answer that the player gave was the correct or not.
-     */
-    public boolean TemporaryAnswers(int k){
-        ArrayList<String> play1ans = new ArrayList<>();
+
+    public String[] curansers(int k){
+        String[] play1ans = new String[4];
         ArrayList<String> currentAns = new ArrayList<>();
         for (int j = k * 4; j < (k * 4) + 4; j++) {
             currentAns.add(getAnswer(j));
@@ -237,22 +234,33 @@ public class Category {
         for (int j = 0; j < 4; j++) {
             int l=m.randomNumber(currentAns.size());
             System.out.printf("%d: \t %s %n", j + 1, currentAns.get(l));
-            play1ans.add(currentAns.get(l));
+            play1ans[j]=(currentAns.get(l));
             currentAns.remove(l);
         }
         System.out.println();
+        return play1ans;
 
-        String playAnswer =player.getAnswer();
+
+    }
+    /**
+     * Displays the answers according the question has been shown, in a random way and after it reads the answer
+     from player,checks if it was  correct or not,and informs the rest of the game to adapt the player's score.
+     * @param k represents the position of the question that has been displayed
+     * @return a boolean that represents if the answer that the player gave was the correct or not.
+     */
+    public boolean TemporaryAnswers(int k,String[] cansw,int playersAnswer){
+
+        /*String playAnswer =player.getAnswer();
         while (!m.ValidAnswer(playAnswer)) {
             playAnswer =player.getAnswer();
         }
         int playersAnswer = Integer.parseInt(playAnswer);
 
         System.out.println();
-
+*/
         boolean correctAnswer = false;
 
-        if (play1ans.get(playersAnswer - 1).equals(getAnswer((k * 4)))) {
+        if (cansw[playersAnswer - 1].equals(getAnswer((k * 4)))) {
             System.out.printf("\tΣΩΣΤΑ!!!!! %n");
             correctAnswer = true;
         } else {
@@ -279,7 +287,7 @@ public class Category {
      * Updates the list of answers according the last question the player answered.
      * @param answ represents the Arraylist of all answers that are still available in-game.
      * @param position represents the position of the first answer in the list that matches
-     the question that the player last answered.
+    the question that the player last answered.
      * @return an Arraylist that has no longer answers that already has been displayed
      */
     public ArrayList<String> RemoveAnswers(ArrayList<String> answ,int position){

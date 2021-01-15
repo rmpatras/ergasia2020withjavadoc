@@ -4,7 +4,7 @@ import java.util.Random;
  *Represents a round in-game and has necessary methods for different informations we might need about him
  *@author Orfeas Galanos
  * @version 11.0.8
-*/
+ */
 public class Round {
     private int round;
     Player player;
@@ -46,13 +46,20 @@ public class Round {
      * @return an integer that represents the type of the round
      */
     public int TypeOfRound(){
-        int typeOfGame =randomNumber(2);
+        int typeOfGame =randomNumber(5);
 
         System.out.printf("ΤΥΠΟΣ ΓΥΡΟΥ :");
         if (typeOfGame == 0) {
+            System.out.printf("\tΣΩΣΤΗ ΑΠΑΝΤΗΣΗ!!!!%n");
+        }
+        else if(typeOfGame==2){
+            System.out.printf("\tΣΤΑΜΑΤΗΣΕ ΤΟ ΧΡΟΝΟΜΕΤΡΟ!!!!%n");
+        }
+        else if(typeOfGame==3){
             System.out.printf("\tΓΡΗΓΟΡΗ ΑΠΑΝΤΗΣΗ!!!!%n");
-        } else {
-            System.out.printf("\tΠΟΝΤΑΡΙΣΜΑ!!!!%n");
+        }
+        else {
+            System.out.printf("\tΘΕΡΜΟΜΕΤΡΟ!!!!%n");
         }
         System.out.println();
         return typeOfGame;
@@ -78,7 +85,7 @@ public class Round {
      * @return a boolean that represents if the answer is valid for the game or not
      */
     public boolean ValidAnswer(String playerAnswer){
-       if ((!playerAnswer.equals("1") && !playerAnswer.equals("2") && !playerAnswer.equals("3") && !playerAnswer.equals("4"))) {
+        if ((!playerAnswer.equals("1") && !playerAnswer.equals("2") && !playerAnswer.equals("3") && !playerAnswer.equals("4"))) {
             System.out.println("Μη αποδεκτός αριθμός,πληκτρολόγησε ξανα ");
             return false;
         }
