@@ -100,7 +100,6 @@ public class NEWGUI extends JFrame {
                         name1=nam1.getText();
                         nam1.setVisible(false);
                         l.setVisible(false);
-                        startgame(1);
                     }
                 });
 
